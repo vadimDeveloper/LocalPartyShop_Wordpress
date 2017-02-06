@@ -1,0 +1,54 @@
+# BEGIN W3TC CDN
+<FilesMatch "\.(asf|asx|wax|wmv|wmx|avi|bmp|class|divx|doc|docx|eot|exe|gif|gz|gzip|ico|jpg|jpeg|jpe|json|mdb|mid|midi|mov|qt|mp3|m4a|mp4|m4v|mpeg|mpg|mpe|mpp|otf|odb|odc|odf|odg|odp|ods|odt|ogg|pdf|png|pot|pps|ppt|pptx|ra|ram|svg|svgz|swf|tar|tif|tiff|ttf|ttc|wav|wma|wri|woff|xla|xls|xlsx|xlt|xlw|zip|ASF|ASX|WAX|WMV|WMX|AVI|BMP|CLASS|DIVX|DOC|DOCX|EOT|EXE|GIF|GZ|GZIP|ICO|JPG|JPEG|JPE|JSON|MDB|MID|MIDI|MOV|QT|MP3|M4A|MP4|M4V|MPEG|MPG|MPE|MPP|OTF|ODB|ODC|ODF|ODG|ODP|ODS|ODT|OGG|PDF|PNG|POT|PPS|PPT|PPTX|RA|RAM|SVG|SVGZ|SWF|TAR|TIF|TIFF|TTF|TTC|WAV|WMA|WRI|WOFF|XLA|XLS|XLSX|XLT|XLW|ZIP)$">
+   <IfModule mod_rewrite.c>
+      RewriteEngine On
+      RewriteCond %{HTTPS} !=on
+      RewriteRule .* - [E=CANONICAL:http://www.localpartyshop.com%{REQUEST_URI},NE]
+      RewriteCond %{HTTPS} =on
+      RewriteRule .* - [E=CANONICAL:https://www.localpartyshop.com%{REQUEST_URI},NE]
+   </IfModule>
+   <IfModule mod_headers.c>
+      Header set Link "<%{CANONICAL}e>; rel=\"canonical\""
+   </IfModule>
+</FilesMatch>
+<FilesMatch "\.(ttf|ttc|otf|eot|woff|font.css)$">
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>
+</FilesMatch>
+# END W3TC CDN
+# BEGIN W3TC Browser Cache
+<IfModule mod_deflate.c>
+    <IfModule mod_headers.c>
+        Header append Vary User-Agent env=!dont-vary
+    </IfModule>
+        AddOutputFilterByType DEFLATE text/css text/x-component application/x-javascript application/javascript text/javascript text/x-js text/html text/richtext image/svg+xml text/plain text/xsd text/xsl text/xml image/x-icon application/json
+    <IfModule mod_mime.c>
+        # DEFLATE by extension
+        AddOutputFilter DEFLATE js css htm html xml
+    </IfModule>
+</IfModule>
+# END W3TC Browser Cache
+## EXPIRES CACHING ##
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/jpg "access 1 year"
+ExpiresByType image/jpeg "access 1 year"
+ExpiresByType image/gif "access 1 year"
+ExpiresByType image/png "access 1 year"
+ExpiresByType text/css "access 1 month"
+ExpiresByType text/html "access 1 month"
+ExpiresByType application/pdf "access 1 month"
+ExpiresByType text/x-javascript "access 1 month"
+ExpiresByType application/x-shockwave-flash "access 1 month"
+ExpiresByType image/x-icon "access 1 year"
+ExpiresDefault "access 1 month"
+</ifModule>
+<IfModule mod_security.c>
+SecFilterEngine Off
+SecFilterScanPOST Off
+</IfModule>
+## EXPIRES CACHING ##
+# BEGIN WordPress
+
+# END WordPress

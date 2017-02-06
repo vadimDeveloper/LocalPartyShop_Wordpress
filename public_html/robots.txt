@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /wp-content/plugins/
+Disallow: /wp-admin/
+Sitemap: http://www.localpartyshop.com/sitemap_index.xml
